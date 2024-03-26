@@ -1,0 +1,37 @@
+﻿@using OnlineShoppp.Models
+@model IEnumerable<SpecialTag>
+@{
+    ViewData["Tittle"] = "Index";
+}
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Special Tag</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info">New Special Tag</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-active">
+            <th>
+                @Html.DisplayNameFor(c => c.Name)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <partial name="_SpecialTagPartial" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

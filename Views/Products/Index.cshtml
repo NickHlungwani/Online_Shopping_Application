@@ -1,0 +1,80 @@
+﻿@using OnlineShoppp.Models
+@model IEnumerable<Products>
+@{
+    ViewData["Tittle"] = "Index";
+}
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Product List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info">New Product</a>
+    </div>
+</div>
+<form method="post">
+    <div class="col-3">
+        <input type="number" class="form-control" name="lowAmount" />
+    </div>
+    <div class="col-3">
+        <input type="number" class="form-control" name="largeAmount" />
+    </div>
+    <div class="col-3">
+        <input type="submit" value="Search" class="btn btn-success" />
+    </div>
+    <div class="col-3"></div>
+
+</form>
+
+<br />
+<div>
+    <table class="table table-bordered border">
+        <tr class="table-active">
+
+            <th>
+                @Html.DisplayNameFor(c => c.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(c => c.Price)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(c => c.ProductColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.isAvailable)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(c => c.ProductTypeId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(c => c.SpecialTagId)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.ProductColor</td>
+                    <td>@item.isAvailable</td>
+                    <td>@item.productTypes.ProductType</td>
+                    <td>@item.specialTag.Name</td>
+                    <td>
+                        <partial name="_ProductPartial" model="@item.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+
